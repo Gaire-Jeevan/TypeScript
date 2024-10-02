@@ -4,9 +4,10 @@ import "./App.css";
 import ReminderList from "./components/ReminderList";
 import Reminder from "./models/reminder";
 import reminderService from "./services/reminders";
+import NewReminder from "./components/NewReminder";
 
 function App() {
-  const [reminders, setReminder] = useState<Reminder[]>([]);
+  const [reminders, setReminders] = useState<Reminder[]>([]);
 
   // as we cannot pass async callback in useEffect so used different function and pass it here
   useEffect(() => {
@@ -15,15 +16,21 @@ function App() {
 
   const loadReminders = async () => {
     const reminders = await reminderService.getReminder();
-    setReminder(reminders);
+    setReminders(reminders);
   };
 
   const removeReminder = (id: number) => {
-    setReminder(reminders.filter(reminder => reminder.id !== id))
+    setReminders(reminders.filter(reminder => reminder.id !== id))
+  }
+
+  const addReminder = async (title: string) => {
+    const newReminder = await reminderService.addReminder(title);
+    setReminders([newReminder, ...reminders])
   }
 
   return (
     <div className="App">
+      <NewReminder onAddReminder = {addReminder} />
       <ReminderList items={reminders} onRemoveReminder={removeReminder}/>{" "}
     </div>
   );
