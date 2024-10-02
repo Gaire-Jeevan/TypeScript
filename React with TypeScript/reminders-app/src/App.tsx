@@ -1,11 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import ReminderList from "./components/ReminderList";
+import Reminder from "./models/reminder";
+
 
 function App() {
+  const [reminders, setReminder] = useState<Reminder[]>([
+    { id: 1, title: "Reminder 1" },
+  ]);
+
   return (
     <div className="App">
-      <button className="btn btn-primary">Click Me</button>
+      <ReminderList items={reminders} />{" "}
     </div>
   );
 }
