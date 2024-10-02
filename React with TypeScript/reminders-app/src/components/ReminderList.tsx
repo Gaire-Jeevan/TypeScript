@@ -7,9 +7,9 @@ interface ReminderListProps {
 
 const ReminderList = ({ items }: ReminderListProps) => {
   return (
-    <ul>
+    <ul className="list-group">
       {items.map((item) => (
-        <li key={item.id}>{item.title}</li>
+        <li key={item.id} className="list-group-item">{item.title}</li>
       ))}
     </ul>
   );

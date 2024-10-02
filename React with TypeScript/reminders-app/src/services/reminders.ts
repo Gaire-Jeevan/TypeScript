@@ -23,5 +23,5 @@ class ReminderService {
   }
 }
 
-// exporting instance of this class --> so that the consumer of this no need to new up the service every time
+// exporting instance of this class --> so that the consumer of this no need to new up the service every time8
 export default new ReminderService();
